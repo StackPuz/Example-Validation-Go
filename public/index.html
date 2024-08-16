@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function fill(valid) {
+            document.getElementById('id').value = (valid ? '1' : '')
+            document.getElementById('name').value = (valid ? 'foo' : 'my name is foo')
+            document.getElementById('email').value = (valid ? 'foo@mail.com' : 'mail')
+            document.getElementById('age').value = (valid ? '10' : '101')
+            document.getElementById('birthdate').value = (valid ? '01/01/2000' : '01012000')
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <form method="post">
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="id">Id</label>
+                    <input id="id" name="Id" class="form-control form-control-sm" value="{{.User.Id}}" />
+                    {{if .Errors.Id}}<span class="text-danger">{{.Errors.Id}}</span>{{end}}
+                </div>
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="name">Name</label>
+                    <input id="name" name="Name" class="form-control form-control-sm" value="{{.User.Name}}" />
+                    {{if .Errors.Name}}<span class="text-danger">{{.Errors.Name}}</span>{{end}}
+                </div>
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="email">Email</label>
+                    <input id="email" name="Email" class="form-control form-control-sm" value="{{.User.Email}}" />
+                    {{if .Errors.Email}}<span class="text-danger">{{.Errors.Email}}</span>{{end}}
+                </div>
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="age">Age</label>
+                    <input id="age" name="Age" class="form-control form-control-sm" value="{{.User.Age}}" />
+                    {{if .Errors.Age}}<span class="text-danger">{{.Errors.Age}}</span>{{end}}
+                </div>
+                <div class="mb-3 col-12">
+                    <label class="form-label" for="birthdate">Birth Date</label>
+                    <input id="birthdate" name="BirthDate" class="form-control form-control-sm"  value="{{.User.BirthDate}}" />
+                    {{if .Errors.BirthDate}}<span class="text-danger">{{.Errors.BirthDate}}</span>{{end}}
+                </div>
+                <div class="col-12">
+                    <input type="button" class="btn btn-sm btn-danger" onclick="fill(0)" value="Fill invaid data" />
+                    <input type="button" class="btn btn-sm btn-success" onclick="fill(1)" value="Fill vaid data" />
+                    <button class="btn btn-sm btn-primary">Submit</button>
+                </div>
+                {{if .Pass}}
+                <div class="alert alert-success mt-3">
+                    Validation success!
+                </div>
+                {{end}}
+            </form>
+        </div>
+    </div>
+</body>
